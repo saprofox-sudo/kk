@@ -1,0 +1,441 @@
+
+
+
+
+<html>
+
+<!-- Mirrored from https://www.kpay.com.kw/kpg/ChangeEcom.htm?actionparam=changeEcompin by HTTrack Website Copier/3.x [XR&CO], Tue, 22 Sep 2026 22:42:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=ISO-8859-1" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<style>
+<
+c:import url ="
+"/>
+</style>
+<script>
+function shouldContainNumbersLettersSpecial(password)
+{
+	var str = "";
+	var passed = validatePassword(password, 
+	{
+		length:   [6, 12],
+		alpha:    1,
+		numeric:  1,
+		special:  1
+	});
+	var spclCnt = 0;
+	for(var i=0;i<password.length;i++)
+	{
+		var tempChar = password.charAt(i);
+		if(tempChar=="~")
+		{
+			passed = false;
+			spclCnt=spclCnt+1;
+		}
+		else if(tempChar=="{")
+		{
+			passed = false;
+			spclCnt=spclCnt+1;
+		}
+		else if(tempChar=="}")
+		{
+			passed = false;
+			spclCnt=spclCnt+1;
+		}
+		else if(tempChar=="`")
+		{
+			passed = false;
+			spclCnt=spclCnt+1;
+		}
+	}
+	if(passed == true)
+	{
+		str = "";
+	}
+	else
+	{
+		if(spclCnt==0)
+		{
+			str = 'should contain atleast one alphabet, number and special character' + "\n";
+		}
+		else
+		{
+			str = 'should not contain any of these special characters ~ `{ }  | ' + "\n";
+		}
+	}
+	return str;
+}
+
+function validatePassword (pw, options) {
+	// default options (allows any password)
+	var o = {
+		lower:    0,
+		upper:    0,
+		alpha:    0, /* lower + upper */
+		numeric:  0,
+		special:  0,
+		length:   [0, Infinity],
+		custom:   [ /* regexes and/or functions */ ],
+		badWords: [],
+		badSequenceLength: 0,
+		noQwertySequences: false,
+		noSequential:      false
+	};
+
+	for (var property in options)
+		o[property] = options[property];
+
+	var	re = {
+			lower:   /[a-z]/g,
+			upper:   /[A-Z]/g,
+			alpha:   /[A-Z]/gi,
+			numeric: /[0-9]/g,
+			special: /[\W_]/g
+		},
+		rule, i;
+
+	// enforce min/max length
+	if (pw.length < o.length[0] || pw.length > o.length[1])
+		return false;
+
+	// enforce lower/upper/alpha/numeric/special rules
+	for (rule in re) {
+		if ((pw.match(re[rule]) || []).length < o[rule])
+			return false;
+	}
+
+	// enforce word ban (case insensitive)
+	for (i = 0; i < o.badWords.length; i++) {
+		if (pw.toLowerCase().indexOf(o.badWords[i].toLowerCase()) > -1)
+			return false;
+	}
+
+	// enforce the no sequential, identical characters rule
+	if (o.noSequential && /([\S\s])\1/.test(pw))
+		return false;
+
+	// enforce alphanumeric/qwerty sequence ban rules
+	if (o.badSequenceLength) {
+		var	lower   = "abcdefghijklmnopqrstuvwxyz",
+			upper   = lower.toUpperCase(),
+			numbers = "0123456789",
+			qwerty  = "qwertyuiopasdfghjklzxcvbnm",
+			start   = o.badSequenceLength - 1,
+			seq     = "_" + pw.slice(0, start);
+		for (i = start; i < pw.length; i++) {
+			seq = seq.slice(1) + pw.charAt(i);
+			if (
+				lower.indexOf(seq)   > -1 || 
+				upper.indexOf(seq)   > -1 ||
+				numbers.indexOf(seq) > -1 ||
+				(o.noQwertySequences && qwerty.indexOf(seq) > -1)
+			) {
+				return false;
+			}
+		}
+	}
+
+	// enforce custom regex/function rules
+	for (i = 0; i < o.custom.length; i++) {
+		rule = o.custom[i];
+		if (rule instanceof RegExp) {
+			if (!rule.test(pw))
+				return false;
+		} else if (rule instanceof Function) {
+			if (!rule(pw))
+				return false;
+		}
+	}
+
+	// great success!
+	return true;
+}
+function validate(processType) 
+	{
+		var cnt = 0;
+		var newCnt = 0;
+		var alrtMsg = "";
+		var cardNo = document.eform.cardNo.value;
+		var cardExpMonth = document.eform.cardExpMonth.value;
+		var cardExpYear = document.eform.cardExpYear.value;
+		var cardHolderName = document.eform.cardName.value;
+		if(processType == 'FP' || processType == 'R'){
+		var atmpin = document.eform.atmPin.value;
+		}
+		if(processType!== 'DR'){
+		var newEpin = document.eform.newPin.value;
+		var reEpin = document.eform.confirmEpin.value;
+		}
+		if(cardNo=="")
+		{
+			cnt = cnt + 1;
+			alrtMsg = alrtMsg + 'Please enter card number ' + "\n";
+		}
+		else
+		{
+			if(!(cardNo.match(/^[0-9]+$/)))
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg+'Please enter valid card number ' + "\n";
+			}
+		}
+		
+		if(cardExpMonth=="")
+		{
+			cnt = cnt + 1;
+			alrtMsg = alrtMsg + 'Please enter valid from month' + "\n";
+		}
+		else if(cardExpMonth>12)
+		{
+			cnt = cnt + 1;
+			alrtMsg = alrtMsg+'Valid from month should not be greater than 12' + "\n";
+		}
+		else
+		{
+			if(!(cardExpMonth.match(/^[0-9]+$/)))
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg+'Please enter valid from month' + "\n";
+			}
+		}
+		
+		if(cardExpYear=="")
+		{
+			cnt = cnt + 1;
+			alrtMsg = alrtMsg+ 'Please enter valid from year' + "\n";
+		}
+		else
+		{
+			if(!(cardExpYear.match(/^[0-9]+$/)))
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg+ 'Please enter valid from year' + "\n";
+			}
+			else if(cardExpYear.length<4)
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg+'Valid From Year should be 4 Digits' + "\n";
+			}
+		}
+		if(cardHolderName=="")
+		{
+			cnt = cnt + 1;
+			alrtMsg = alrtMsg+ 'Please enter cardholder name' + "\n";
+		}
+		else
+		{
+			var noalpha = /^[a-zA-Z]*$/;
+			if (!noalpha.test(cardHolderName)) 
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg+ 'Please enter valid cardholder name' + "\n";
+			}
+		}
+		
+		if(processType == 'FP' || processType == 'R' ){
+		if(atmpin=="")
+		{
+			cnt = cnt + 1;
+			alrtMsg = alrtMsg+ 'Please enter 4 digit ATM PIN' + "\n";
+		}
+		else
+		{
+			if(atmpin.length!=4)
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg+ 'ATM PIN length should be 4 ' + "\n";
+			}
+			else if(isNaN(atmpin))
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg + 'ATM PIN should be a number ' + "\n";
+			}
+		}
+		}
+		
+		if(processType!='DR'){
+		if(newEpin=="")
+		{
+			cnt = cnt + 1;
+			alrtMsg = alrtMsg + 'Please enter new e-Commerce PIN' + "\n";
+			newCnt = newCnt+1;
+		}
+		else
+		{
+			if(newEpin.length<6)
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg+ 'New e-Commerce PIN length should be atleast 6  ' + "\n";
+				newCnt = newCnt+1;
+			}
+			else 
+			{
+				var resultMsg = shouldContainNumbersLettersSpecial(newEpin);
+				if(!(resultMsg==""))
+				{
+					cnt = cnt + 1;
+					alrtMsg = alrtMsg + 'New e-Commerce PIN' + resultMsg;
+					newCnt = newCnt+1;
+				}
+			}
+		}
+		if(reEpin=="")
+		{
+			cnt = cnt + 1;
+			alrtMsg = alrtMsg+ 'Please enter Confirmed e-Commerce PIN' + "\n";
+			newCnt = newCnt+1;
+		}
+		else
+		{
+			if(reEpin.length<6)
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg+ 'Confirmed e-Commerce PIN length should be atleast 6  ' + "\n";
+				newCnt = newCnt+1;
+			}
+			else 
+			{
+				var resultMsg = shouldContainNumbersLettersSpecial(reEpin);
+				if(!(resultMsg==""))
+				{
+					cnt = cnt + 1;
+					alrtMsg = alrtMsg + 'Confirmed e-Commerce PIN' + resultMsg;
+					newCnt = newCnt+1;
+				}
+			}
+		}
+		var tempNewCnt = 0;
+		if((tempNewCnt==0)&&(newCnt==0))
+		{
+			if(!(reEpin==newEpin))
+			{
+				cnt = cnt + 1;
+				alrtMsg = alrtMsg + 'Confirmed e-Commerce PIN doesnt match with New e-Commerce PIN ' + "\n";
+			}
+		}
+		}
+		if(cnt==0)
+		{
+			document.eform.action="ecom64db.htm?actionparam=processEcom";
+			document.eform.submit();
+		}
+		else
+		{
+			alert(alrtMsg);
+			document.eform.cardNo.value="";
+			document.eform.cardExpMonth.value="";
+		 	document.eform.cardExpYear.value="";
+			document.eform.cardName.value="";
+			document.eform.atmPin.value="";
+		 	document.eform.newPin.value="";
+			document.eform.confirmEpin.value="";
+		
+			return false;
+		}		
+	}
+	
+	function closeWindow(){
+		var browser=navigator.appName;
+		if(browser == "Microsoft Internet Explorer")
+			window.close();
+		else
+		{
+			document.eform.action="ecoma24f.htm?actionparam=cancelEcom";
+			document.eform.submit();
+		}
+			
+	}
+</script>		
+</head>
+<body>
+<table width="100%">
+		
+
+						
+			
+		</table>
+<form action="https://www.kpay.com.kw/kpg/ecom.htm" method="post" name="eform" autocomplete="off">
+
+<table class="transTableHeader" width="100%">
+
+	<TR>
+		<TD>&nbsp;</TD>
+	</TR>
+
+
+	<tr>
+		<td colspan="5" align="center">
+		<input type="hidden" name="processType" value='CP'/>
+		<input type="hidden" name="ecomId" value=''/>
+		<input type="hidden" name="paymentId" value=''/>
+		
+		
+		
+		
+		
+		<input type="hidden" name="pageHead" value="e-Commerce PIN Change "/>
+		e-Commerce PIN Change
+		
+		
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="paymentlabel">Card Number</td>
+		<td class="paymentinputtd"><input type="text" name="cardNo" size="16"	maxlength="19"></td>
+	</tr>
+	<tr>
+		<td class="paymentlabel">Valid From</td>
+		<td class="paymentinputtd"><input type="text" name="cardExpMonth"	size="2" maxlength="2"/>/ <input type="text"
+			name="cardExpYear" size="4" maxlength="4"/>(MM/YYYY)</td>
+	</tr>
+	<tr>
+		<td class="paymentlabel">Cardholder&#39;s Name</td>
+		<td class="paymentinputtd"><input type="text" name="cardName" size="25" maxlength="255"></td>
+	</tr>
+	
+	
+	<tr>
+		<td class="paymentlabel">Old e-Commerce PIN</td>
+		<td class="paymentinputtd"><input type="password" autocomplete="off" name="oldPin" size="12" maxlength="12"></td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td class="paymentlabel">New e-Commerce PIN</td>
+		<td class="paymentinputtd"><input type="password" autocomplete="off" name="newPin" size="12" maxlength="12"></td>
+	</tr>
+	
+	<tr>
+		<td class="paymentlabel">Confirm e-Commerce PIN</td>
+		<td class="paymentinputtd"><input type="password" autocomplete="off" name="confirmEpin" size="12" maxlength="12"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="2" align="center">
+		 	<input class="btnclr" type="button" name="process"	onClick ="javascript:validate('CP')" 
+		 	
+		 	
+		 	value="Change"
+		 	
+		 	
+		 	>
+		 	<input	class="btnclr" type="button" name="cancel" onClick ="javascript:closeWindow()" value="Cancel">
+		 	
+			<input type="hidden" name="styleCss" value=''/>
+			<input type="hidden" name="header" value=''/>
+		 </td>
+	</tr>
+</table>
+</form>
+<!-- Footer Content Start-->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"c8de198a50d34c38840e982adf6a4946","spa":2}' crossorigin="anonymous"></script>
+</body>
+
+<!-- Mirrored from https://www.kpay.com.kw/kpg/ChangeEcom.htm?actionparam=changeEcompin by HTTrack Website Copier/3.x [XR&CO], Tue, 22 Sep 2026 22:42:22 GMT -->
+</html>

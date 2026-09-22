@@ -8,7 +8,8 @@ body{
     color: #333;
 	margin:0;
 	padding:0;
-	word-wrap: break-word;  
+	word-wrap: break-word;
+	overflow-x: hidden;
 	}
 
 /*UTILITY CLASS'S*/
@@ -412,7 +413,7 @@ div#loading2{
 }
 
 div#siflg{
-	width:103%;
+	width:100%;
 	 text-align: left;
 	 /* font-size: 76%; */
 	 font-size: 89%;
@@ -421,7 +422,7 @@ div#siflg{
 }
 
 div#checkFC{
-width:103%; 
+width:100%; 
 text-align: left;
 display:block;
 padding:10px 5px 0px 0px;
@@ -429,11 +430,13 @@ padding:10px 5px 0px 0px;
 /* added by saqib: for CBK branding*/
 .add{
 	height:90px;
-	width: 440px;
+	max-width: 440px;
+	width: 100%;
 	margin: auto;
 	margin-bottom:10px;
 	border-radius: 0px 10px;
 	background-image: url("../images/adds/NewDerayaCamp/pc.jpg");
+	background-size: cover;
 	display:block;
 }
 

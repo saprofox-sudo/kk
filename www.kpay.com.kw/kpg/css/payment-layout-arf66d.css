@@ -8,20 +8,22 @@ body{
     color: #333;
 	margin:0;
 	padding:0;
-	word-wrap: break-word;  
+	word-wrap: break-word;
+	overflow-x: hidden;
 	}
 
 /*UTILITY CLASS'S*/
 .wrapper{
 	margin: auto;
 	max-width: 480px; 
-	width: 480px;
+	width: 100%;
 	height: auto;
 	padding: 12px; 
 	display: block;
 	text-align: left;	
 	margin-top: 3%;
-	text-align: center;	
+	text-align: center;
+	box-sizing: border-box;
 
     /*position: absolute;
     top: 50%;
@@ -286,8 +288,10 @@ width : 100%;
 
 /* Added by Ahmed & Saqib */
 .contentBox{
-width:445px;
+max-width:445px;
+width:100%;
 padding-top:1px;
+box-sizing: border-box;
 }
 
 /* Added by Ahmed & Saqib */
@@ -419,7 +423,7 @@ div#loading2{
 }
 
 div#siflg{
-	width:103%;
+	width:100%;
 	margin-right: 1%;
 	 text-align: right;
 	 //Added for si issue
@@ -438,11 +442,13 @@ div#siflg{
 /* added by saqib: for CBK branding*/
 .add{
 	height:90px;
-	width: 440px;
+	max-width: 440px;
+	width: 100%;
 	margin: auto;
 	margin-bottom:10px;
 	border-radius: 0px 10px;
 	background-image: url("../images/adds/NewDerayaCamp/pc.jpg");
+	background-size: cover;
 	display:block;
 }
 .mb-10{

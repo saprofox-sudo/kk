@@ -78,6 +78,15 @@
 	footer .footer-content{
 		padding: 0 10px;
 	}
+	div#siflg{
+		width: 100%;
+	}
+	div#checkFC{
+		width: 100%;
+	}
+	.suggestion-box{
+		max-width: 100%;
+	}
 }
 /* Extra small devices (small phones, 435px and down) */
 @media (max-width: 435px){

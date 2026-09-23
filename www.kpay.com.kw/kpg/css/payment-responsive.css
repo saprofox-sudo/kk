@@ -7,103 +7,29 @@
 		margin-top:10%;
 	}
 }
-/* Small devices (phones, 500px and down) */
+/* Medium devices (tablets, 768px and up) */
 @media (max-width: 500px){
 	.wrapper{
 		max-width: 100%;
 		width: 100%;
-		padding: 8px;
-		box-sizing: border-box;
-	}
-	.contentBox{
-		max-width: 100%;
-		width: 100% !important;
-		box-sizing: border-box;
-		padding: 18px;
-	}
-	.notification{
-		max-width: 100% !important;
-		width: 100% !important;
-		box-sizing: border-box;
-	}
-	.logoSep{
-		max-width: 100%;
-	}
-	.add{
-		max-width: 100%;
-		width: 100%;
-		background-size: cover;
-	}
-	input#debitNumber{
-		width: 100%;
-		max-width: 208px;
-	}
-	.bank{
-		width: 100%;
-		max-width: 208px;
-	}
-	.pin{
-		width: 100%;
-		max-width: 170px;
-	}
-	div#storedpan{
-		margin-left: 0;
-		margin-right: 0;
-		padding: 13px 10px 20px 15px;
-	}
-	div#seleHolder{
-		width: 100%;
-		margin-left: 0;
-	}
-	.column{
-		width: 100%;
-		margin-left: 0;
-		float: none;
-	}
-	.column1{
-		width: 100%;
-		padding-left: 0;
-		float: none;
-	}
-	.contentBox .col{
-		width: 100%;
-		float: none;
-	}
-	.contentBox .innerwrapper .col:first-child{
-		width: 100%;
-	}
-	.contentBox .innerwrapper .col:last-child{
-		width: 100%;
-	}
-	footer .footer-content{
-		padding: 0 10px;
-	}
-	div#siflg{
-		width: 100%;
-	}
-	div#checkFC{
-		width: 100%;
-	}
-	.suggestion-box{
-		max-width: 100%;
 	}
 }
-/* Extra small devices (small phones, 435px and down) */
+/* Medium devices (tablets, 768px and up) */
 @media (max-width: 435px){
 	.logoHead {
    	    left: 36%;
 	}
 	.contentBox{
-		padding: 14px;
+		padding: 18px;
 	}
 }
-/* Very small devices (380px and down) */
+/* Medium devices (tablets, 768px and up) */
 @media (max-width: 380px){
 	.contentBox {
-    	padding: 10px;
+    	padding: 12px;
 	} 
 	.wrapper {
-    	margin-top: 15%;
+    	margin-top: 20%;
 	}
 }	
 @media (max-width: 350px){

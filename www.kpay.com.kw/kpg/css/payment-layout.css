@@ -8,22 +8,20 @@ body{
     color: #333;
 	margin:0;
 	padding:0;
-	word-wrap: break-word;
-	overflow-x: hidden;
+	word-wrap: break-word;  
 	}
 
 /*UTILITY CLASS'S*/
 .wrapper{
 	margin: auto;
 	max-width: 480px; 
-	width: 100%;
+	width: 480px;
 	height: auto;
 	padding: 12px; 
 	display: block;
 	text-align: left;	
 	margin-top: 3%;
 	text-align: center;	
-	box-sizing: border-box;
 
     /*position: absolute;
     top: 50%;
@@ -285,10 +283,8 @@ input[type=radio]{
 }
 /* Added by Ahmed & Saqib */
 .contentBox{
-max-width:450px;
-width:100%;
+width:450px;
 padding-top:1px;
-box-sizing: border-box;
 }
 
 /* Added by Ahmed & Saqib */
@@ -413,7 +409,7 @@ div#loading2{
 }
 
 div#siflg{
-	width:100%;
+	width:103%;
 	 text-align: left;
 	 /* font-size: 76%; */
 	 font-size: 89%;
@@ -422,7 +418,7 @@ div#siflg{
 }
 
 div#checkFC{
-width:100%; 
+width:103%; 
 text-align: left;
 display:block;
 padding:10px 5px 0px 0px;
@@ -430,13 +426,11 @@ padding:10px 5px 0px 0px;
 /* added by saqib: for CBK branding*/
 .add{
 	height:90px;
-	max-width: 440px;
-	width: 100%;
+	width: 440px;
 	margin: auto;
 	margin-bottom:10px;
 	border-radius: 0px 10px;
 	background-image: url("../images/adds/NewDerayaCamp/pc.jpg");
-	background-size: cover;
 	display:block;
 }
 
@@ -457,4 +451,49 @@ input[type=password]::-ms-reveal {
   display: none !important;
 }
 
-  
+/* Added for Knet - Mobile Responsive Styles */
+@media (max-width: 768px){
+	.wrapper{
+		margin-top:10%;
+	}
+}
+@media (max-width: 500px){
+	.wrapper{
+		max-width: 100%;
+		width: 100%;
+	}
+	.contentBox{
+		width: 100%;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+}
+@media (max-width: 435px){
+	.logoHead {
+   	    left: 36%;
+	}
+	.contentBox{
+		padding: 18px;
+	}
+}
+@media (max-width: 380px){
+	.contentBox {
+    	padding: 12px;
+	} 
+	.wrapper {
+    	margin-top: 20%;
+	}
+}	
+@media (max-width: 350px){
+	.contentBox .col:first-child .paymentlabel {
+		padding-left: 0;
+	}
+}
+.madd{
+	height:90px;
+	max-width: 372px;
+	margin: 5px auto -30px auto;
+	border-radius: 0px 10px;
+	background-image: url("../images/adds/NewDerayaCamp/mob.jpg");
+	display:block;	
+}
